@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+<record id="view_book_borrowing_tree" model="ir.ui.view">
+    <field name="name">book.borrowing.tree</field>
+    <field name="model">book.borrowing</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="partner_id"/>
+            <field name="book_id"/>
+            <field name="state"/>
+            <field name="borrow_date"/>
+            <field name="return_date"/>
+        </tree>
+    </field>
+</record>
+</odoo>

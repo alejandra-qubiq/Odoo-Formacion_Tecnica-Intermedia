@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="record_book_custom">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="book_library.report_book_custom_document"/>
+        </t>
+    </t>
+   </template>
+   <template id="report_book_custom_document">
+    <t t-call="web.external_layout">
+        <t t-if="o.product_tmpl_id.image_1920">
+            <img t-attf-src="data:image/*;base64,{{o.product_tmpl_id.image_1920}}" height="400" width="400"/>
+        </t>
+        <h1><span t-field="o.name"/>-<span t-field="o.published_year"/></h1>
+        <h3><span t-field="o.author_id.name"/></h3>
+        <h6><p t-field="o.synopsis"></p></h6>
+    </t>
+   </template>
+</odoo>

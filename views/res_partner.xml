@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+
+    <!-- res.partner inherit form view -->
+    <record id="view_res_partner_form" model="ir.ui.view">
+        <field name="name">view.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+             <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" icon="fa-book" type="object"  name="action_view_borrowed_books">
+                    <field string="Borrowed Books" name="borrowed_books_count" widget="statinfo" invisible='borrowed_books_count== 0'/>
+                </button>
+            </div>
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" icon="fa-money" type="object" readonly="True" name="action_view_borrowed_books_from_partner">
+                    <field string="Total Sales" name="total_sales" widget="statinfo" invisible="author == False" readonly="True"/>
+                </button>
+            </div>
+
+            <xpath expr="//field[@name='name']" position="after">
+                    <field name="first_name" placeholder="First Name"/>
+                    <field name="last_name" placeholder="Last Name"/>
+                <header>
+                    <button name="singup" string="Singup" class="oe_highlight" type="object" invisible="partner == True"/>
+                    <button name="signout" string="DropOut" type="object" invisible="partner == False"/>
+                </header>
+
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="partner"/>
+                <field name="partner_number" invisible="partner == False"/>
+                <field name="author" position="after"/>
+            </xpath>
+            <notebook>
+            <page string="Genres" >
+                <field name="genre_ids" position="after" invisible="author == False"/>
+            </page>
+            </notebook>
+            <notebook>
+            <page string="Books" >
+                <field name="author_books_ids" widget="many2many" invisible="author == False"/>
+            </page>
+            </notebook>
+            <notebook>
+            <page string="Never rented" >
+                <field name="never_borrowed" widget="many2many" readonly="1"/>
+            </page>
+            </notebook>
+        </field>
+    </record>
+
+<!-- members action window -->
+    <record id="res_partner_member_action" model="ir.actions.act_window">
+        <field name="name">Members</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_partner': True}</field> <!-- marca true en el formulario -->
+        <field name="domain">[('partner', '=', True)]</field> <!-- marca el filtro que se va a aplicar -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There arent any members
+            </p>
+        </field>
+    </record>
+
+<!-- authors action window -->
+    <record id="res_partner_author_action" model="ir.actions.act_window">
+        <field name="name">Author</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'default_author': True}</field> <!-- marca true en el formulario -->
+        <field name="domain">[('author', '=', True)]</field> <!-- marca el filtro que se va a aplicar -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There arent any authors
+            </p>
+        </field>
+    </record>
+    <record id="action_view_borrowed_books" model="ir.actions.act_window">
+        <field name="name">Borrowed Books</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">book.borrowing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('partner_id', '=', partner_id)]</field>
+        <field name="context">{'search_default_partner_id': [partner_id]}</field>
+    </record>
+
+
+</odoo>
