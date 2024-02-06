@@ -6,7 +6,9 @@ from odoo.exceptions import ValidationError
 
 class BookBorrowing(models.Model):
     _name = 'book.borrowing'
+
     partner_id = fields.Many2one(
+        string='Partner',
         comodel_name="res.partner",
         domain="[('partner', '=', True)]"
     )
@@ -15,6 +17,7 @@ class BookBorrowing(models.Model):
         related="partner_id.partner_number"
     )
     book_id = fields.Many2one(
+        string='Book',
         comodel_name='book.library',
         string='Book'
     )
@@ -43,7 +46,7 @@ class BookBorrowing(models.Model):
             rec.write({'return_date': fields.Datetime.now(),
                        'state': 'returned'})
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if 'book_id' in vals:
             book_id = self.env['book.library'].browse(vals.get('book_id'))

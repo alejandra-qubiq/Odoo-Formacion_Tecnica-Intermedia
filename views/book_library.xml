@@ -76,13 +76,9 @@
                 widget="many2many_tags"
                 />
                 <field name= "is_pack"/>
-
-
-
         </tree>
     </field>
 </record>
-
 <!-- book_library search view -->
 <record id="book_library_view_search" model="ir.ui.view">
     <field name="name">book.library.view.search</field>
@@ -96,10 +92,8 @@
         </search>
     </field>
 </record>
-
     <!-- book.library action window -->
     <!-- action -->
-
     <record id="book_library_action" model="ir.actions.act_window">
         <field name="name">Book Library</field>
         <field name="type">ir.actions.act_window</field>
@@ -111,14 +105,9 @@
             </p>
             <p>
                 <!-- More details about what a user can do with this object will be OK -->
-
             </p>
         </field>
     </record>
-    
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="book_library_menu_act" web_icon ="book_library,static/menu_icon.png" name="Book Library" action="book_library_action" sequence="10"/>
-
-
-
 </odoo>
