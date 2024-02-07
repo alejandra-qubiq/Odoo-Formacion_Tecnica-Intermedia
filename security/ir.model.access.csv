@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_book_library,access.book.library,model_book_library,base.group_user,1,1,1,1
+acces_library_book_genre,acces.library.book.genre,model_library_book_genre,base.group_user,1,1,1,1
+acces_library_book_component_line,acces.library.book.component.line,model_library_book_component_line,base.group_user,1,1,1,1
+access_library_audit,access.library.audit,model_library_audit,group_book_library,1,1,1,1
+access_book_borrowing,access.book.borrowing,model_book_borrowing,base.group_user,1,1,1,1

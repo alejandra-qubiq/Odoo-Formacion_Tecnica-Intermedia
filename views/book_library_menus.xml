@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!--MAIN MENU-->
+    <menuitem id="book_library_menu_act" web_icon ="book_library,static/menu_icon.png" action="book_library_action" name="Book Library" sequence="10"/>
+
+    <!--SUBMENU MENU DATA-->
+         <menuitem id="menu_data" parent="book_library.book_library_menu_act" action="book_library_action" name="Data" sequence="1"/>
+
+            <!--SUBSUBMENU MENU library_book_genre_action-->
+            <menuitem id="menu_book_library_books" parent="book_library.menu_data" action="book_library_action" name="Books" sequence="1"/>
+            <menuitem id="menu_book_library_genre" parent="book_library.menu_data" action="library_book_genre_action" name="Genres" sequence="2"/>
+            <menuitem id="menu_book_library_authors" parent="book_library.menu_data" action="res_partner_author_action" name="Authors" sequence="3"/>
+            <menuitem id="menu_book_library_subscribers" parent="book_library.menu_data" action="res_partner_member_action" name="Subscribers" sequence="4"/>
+            <menuitem id="menu_library_book_component_line" parent="book_library.menu_data" action="library_book_component_line_action" name="Packs" sequence="5"/>
+
+<!--SUBMENU MENU SETTINGS-->
+         <menuitem id="menu_settings" parent="book_library.book_library_menu_act" action="book_library_action" name="Settings" sequence="1"/>
+
+            <!--SUBSUBMENU MENU-->
+            <menuitem id="menu_book_library_audit" parent="book_library.menu_settings" action="library_audit_action" name="Audit" sequence="1"/>
+</odoo>
